@@ -92,6 +92,7 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+vim.o.guifont = 'BlexMono Nerd Font Mono:h11'
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -671,7 +672,7 @@ require('lazy').setup({
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
+          require('conform').format { async = true, lsp_format = 'fallback', lsp_fallback = true }
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -691,8 +692,8 @@ require('lazy').setup({
           lsp_format_opt = 'fallback'
         end
         return {
-          timeout_ms = 500,
-          lsp_format = lsp_format_opt,
+          timeout_ms = 2500,
+          lsp_format = 'never', --lsp_format_opt,
         }
       end,
       formatters_by_ft = {
